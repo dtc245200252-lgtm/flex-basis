@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS flex-basis Property - Hướng Dẫn & Thực Hành Chi Tiết</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container-header">
+      <div class="badge">CSS Flexbox Master</div>
+      <h1>Tìm Hiểu & Thực Hành Thuộc Tính <code>flex-basis</code></h1>
+      <p class="subtitle">Khám phá cách thuộc tính <code>flex-basis</code> kiểm soát kích thước cơ sở ban đầu của Flex Item trên trục chính (Main Axis).</p>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <!-- KHÁI NIỆM & CÚ PHÁP -->
+    <section class="card theory-card">
+      <div class="card-header">
+        <span class="icon">📖</span>
+        <h2>1. Khái Niệm & Cú Pháp Cơ Bản</h2>
+      </div>
+      <div class="card-body">
+        <p><strong><code>flex-basis</code></strong> là thuộc tính trong CSS dùng để chỉ định <em>kích thước cơ sở ban đầu</em> của một Flex Item dọc theo <strong>trục chính (main axis)</strong> trước khi không gian trống còn lại được phân bổ thêm bởi <code>flex-grow</code> hoặc thu nhỏ lại bởi <code>flex-shrink</code>.</p>
+        
+        <div class="code-box">
+          <code>flex-basis: &lt;length&gt; | auto | initial | inherit;</code>
+        </div>
+
+        <div class="grid-2col">
+          <div class="info-pill">
+            <strong>🎯 Trục chính (Main Axis):</strong>
+            <ul>
+              <li><code>flex-direction: row</code> &rarr; <code>flex-basis</code> xác định chiều ngang (width).</li>
+              <li><code>flex-direction: column</code> &rarr; <code>flex-basis</code> xác định chiều dọc (height).</li>
+            </ul>
+          </div>
+          <div class="info-pill">
+            <strong>⚙️ Các giá trị thường dùng:</strong>
+            <ul>
+              <li><code>number (px, %, em, rem...)</code>: Kích thước cụ thể định trước.</li>
+              <li><code>auto</code> (mặc định): Lấy theo width/height hoặc nội dung.</li>
+              <li><code>initial</code>: Đưa về mặc định (auto).</li>
+              <li><code>inherit</code>: Kế thừa từ phần tử cha.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VÍ DỤ 1: flex-basis với px -->
+    <section class="card example-card" id="example-1">
+      <div class="card-header">
+        <span class="badge-num">Ví dụ 1</span>
+        <h2>Sử Dụng <code>flex-basis</code> Với Đơn Vị px (Trục Ngang)</h2>
+      </div>
+      <div class="card-body">
+        <p class="desc">Trục chính mặc định là hàng ngang (<code>flex-direction: row</code>). Các phần tử có kích thước cơ sở chiều rộng lần lượt là <strong>200px</strong>, <strong>100px</strong> và <strong>150px</strong>.</p>
+        
+        <div class="demo-viewport">
+          <div class="demo-label">Container: <code>display: flex; gap: 10px;</code></div>
+          <div class="container container-ex1">
+            <div class="item item-px1">
+              <span class="item-title">Item 1</span>
+              <span class="item-spec">flex-basis: 200px</span>
+            </div>
+            <div class="item item-px2">
+              <span class="item-title">Item 2</span>
+              <span class="item-spec">flex-basis: 100px</span>
+            </div>
+            <div class="item item-px3">
+              <span class="item-title">Item 3</span>
+              <span class="item-spec">flex-basis: 150px</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          <pre><code>/* CSS Ví dụ 1 */
+.container {
+  display: flex;
+  gap: 10px;
+}
+.item1 { flex-basis: 200px; }
+.item2 { flex-basis: 100px; }
+.item3 { flex-basis: 150px; }</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- VÍ DỤ 2: flex-basis với flex-direction: column -->
+    <section class="card example-card" id="example-2">
+      <div class="card-header">
+        <span class="badge-num">Ví dụ 2</span>
+        <h2><code>flex-basis</code> Thay Đổi Theo <code>flex-direction: column</code> (Trục Dọc)</h2>
+      </div>
+      <div class="card-body">
+        <p class="desc">Khi <code>flex-direction: column</code>, trục chính xoay thành chiều dọc. Lúc này <code>flex-basis: 100px</code> sẽ kiểm soát <strong>chiều cao (height)</strong> của từng Item thay vì chiều rộng.</p>
+        
+        <div class="demo-viewport">
+          <div class="demo-label">Container: <code>display: flex; flex-direction: column; height: 500px; gap: 10px;</code></div>
+          <div class="container container-ex2">
+            <div class="item item-col">
+              <span class="item-title">Item 1</span>
+              <span class="item-spec">flex-basis: 100px (chiều cao)</span>
+            </div>
+            <div class="item item-col">
+              <span class="item-title">Item 2</span>
+              <span class="item-spec">flex-basis: 100px (chiều cao)</span>
+            </div>
+            <div class="item item-col">
+              <span class="item-title">Item 3</span>
+              <span class="item-spec">flex-basis: 100px (chiều cao)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          <pre><code>/* CSS Ví dụ 2 */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 500px;
+}
+.item {
+  flex-basis: 100px; /* Chiều cao ban đầu */
+  padding: 20px;
+  background-color: lightgreen;
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- VÍ DỤ 3: flex-basis với % -->
+    <section class="card example-card" id="example-3">
+      <div class="card-header">
+        <span class="badge-num">Ví dụ 3</span>
+        <h2>Sử Dụng <code>flex-basis</code> Với Phần Trăm (%)</h2>
+      </div>
+      <div class="card-body">
+        <p class="desc">Khi đặt <code>flex-basis: 50%</code>, mỗi item chiếm kích thước cơ sở tương ứng 50% độ rộng của container theo trục chính, chia đều thành 2 cột tương xứng.</p>
+        
+        <div class="demo-viewport">
+          <div class="demo-label">Container: <code>display: flex; gap: 10px;</code></div>
+          <div class="container container-ex3">
+            <div class="item item-pct">
+              <span class="item-title">Item 1</span>
+              <span class="item-spec">flex-basis: 50%</span>
+            </div>
+            <div class="item item-pct">
+              <span class="item-title">Item 2</span>
+              <span class="item-spec">flex-basis: 50%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          <pre><code>/* CSS Ví dụ 3 */
+.container {
+  display: flex;
+  gap: 10px;
+}
+.item {
+  flex-basis: 50%;
+  padding: 20px;
+  background-color: lightcoral;
+  box-sizing: border-box;
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- VÍ DỤ 4: Kết hợp flex-basis với flex-grow -->
+    <section class="card example-card" id="example-4">
+      <div class="card-header">
+        <span class="badge-num">Ví dụ 4</span>
+        <h2>Kết Hợp <code>flex-basis</code> Với <code>flex-grow</code></h2>
+      </div>
+      <div class="card-body">
+        <p class="desc">
+          Cả 3 Items ban đầu đều có kích thước xuất phát là <code>flex-basis: 100px</code>.
+          Phần không gian dư thừa trong Container rộng 600px được chia theo tỷ lệ <code>flex-grow</code>: 
+          <strong>Item 1 (grow: 1)</strong>, <strong>Item 2 (grow: 2)</strong>, <strong>Item 3 (grow: 1)</strong>. 
+          Do đó Item 2 mở rộng nhiều gấp đôi Item 1 và Item 3!
+        </p>
+        
+        <div class="demo-viewport">
+          <div class="demo-label">Container: <code>width: 600px; display: flex; gap: 10px;</code></div>
+          <div class="container container-ex4">
+            <div class="item item-grow1">
+              <span class="item-title">Item 1</span>
+              <span class="item-spec">basis: 100px | grow: 1</span>
+            </div>
+            <div class="item item-grow2">
+              <span class="item-title">Item 2</span>
+              <span class="item-spec">basis: 100px | grow: 2 (Nhận x2 không gian thừa)</span>
+            </div>
+            <div class="item item-grow3">
+              <span class="item-title">Item 3</span>
+              <span class="item-spec">basis: 100px | grow: 1</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-snippet">
+          <pre><code>/* CSS Ví dụ 4 */
+.container {
+  display: flex;
+  width: 600px;
+  gap: 10px;
+}
+.item1 { flex-basis: 100px; flex-grow: 1; }
+.item2 { flex-basis: 100px; flex-grow: 2; }
+.item3 { flex-basis: 100px; flex-grow: 1; }</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- TỔNG KẾT & BẢNG GHI NHỚ -->
+    <section class="card summary-card">
+      <div class="card-header">
+        <span class="icon">📊</span>
+        <h2>7. Bảng Tóm Tắt & Ghi Nhớ Kiến Thức</h2>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="summary-table">
+            <thead>
+              <tr>
+                <th>Giá trị</th>
+                <th>Mô tả công dụng</th>
+                <th>Ứng dụng thực tế</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>flex-basis: 200px</code></td>
+                <td>Đặt kích thước cơ sở ban đầu là 200px</td>
+                <td>Cố định bề rộng/cao khởi điểm cho sidebar, card, nút bấm</td>
+              </tr>
+              <tr>
+                <td><code>flex-basis: 50%</code></td>
+                <td>Đặt kích thước cơ sở bằng 50% theo trục chính</td>
+                <td>Chia layout 2 cột đồng đều (chia 3 cột với 33.33%)</td>
+              </tr>
+              <tr>
+                <td><code>flex-basis: auto</code></td>
+                <td>Lấy kích thước từ width/height hoặc theo nội dung bên trong</td>
+                <td>Giá trị mặc định, tự co giãn theo nội dung phần tử</td>
+              </tr>
+              <tr>
+                <td><code>flex-basis: initial</code></td>
+                <td>Khôi phục về giá trị mặc định của CSS (auto)</td>
+                <td>Reset thuộc tính khi ghi đè CSS</td>
+              </tr>
+              <tr>
+                <td><code>flex-basis: inherit</code></td>
+                <td>Kế thừa giá trị flex-basis từ phần tử cha</td>
+                <td>Đồng bộ kích thước với container cha khi lồng flex</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="key-takeaways">
+          <h3>💡 Quy Tắc Vàng Cần Nhớ</h3>
+          <div class="takeaway-grid">
+            <div class="takeaway-item">
+              <div class="takeaway-badge">Quy tắc 1</div>
+              <p><code>flex-basis</code> phụ thuộc mật thiết vào <strong><code>flex-direction</code></strong>: 
+              <br>• <code>row</code> &rarr; tác động chiều ngang (Main Axis = Width).
+              <br>• <code>column</code> &rarr; tác động chiều dọc (Main Axis = Height).</p>
+            </div>
+            <div class="takeaway-item">
+              <div class="takeaway-badge">Quy tắc 2</div>
+              <p><code>flex-basis</code> là <strong>kích thước xuất phát điểm</strong>. 
+              <br>Sau đó <code>flex-grow</code> sẽ chia thêm không gian dư thừa, còn <code>flex-shrink</code> sẽ co lại nếu thiếu không gian.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Bài thực hành CSS Flexbox Property: <strong>flex-basis</strong> | Thực hiện bởi Học Viên CodeGym</p>
+  </footer>
+</body>
+</html>
